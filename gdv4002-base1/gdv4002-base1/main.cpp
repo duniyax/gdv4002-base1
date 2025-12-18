@@ -22,7 +22,9 @@ int main(void) {
 	//
 	// Setup game scene objects here
 	//
-
+	else {
+		printf("Engine initialised successfully.\n");
+	}
 	
 	//
 	// Set callback functions
