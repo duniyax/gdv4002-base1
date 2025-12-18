@@ -22,9 +22,8 @@ int main(void) {
 	//
 	// Setup game scene objects here
 	//
-	else {
-		printf("Engine initialised successfully.\n");
-	}
+	addObject("player", glm::vec2(1.0f, 1.0f), glm::radians(45.0f), glm::vec2(0.5f, 1.0f), "Resources\\Textures\\mcblock01.png", TextureProperties::NearestFilterTexture());
+	
 	
 	//
 	// Set callback functions
