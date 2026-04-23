@@ -2,7 +2,7 @@
 
 
 // Function prototypes
-
+void myUpdate(GLFWwindow* window, double tDelta);
 
 // Global Variables
 
@@ -19,9 +19,6 @@ int main(void) {
 		return initResult; // exit if setup failed
 	}
 	
-	
-
-
 	//
 	// Setup game scene objects here
 	//
@@ -48,9 +45,8 @@ int main(void) {
 	//
 	// Set callback functions
 	//
-	void myUpdate(GLFWwindow * window, double tDelta) 
-		
-		; float player1RotationSpeed = glm::radians(90.0f);
+	setUpdateFunction(myUpdate);
+
 
 
 	// Enter main loop - this handles update and render calls
@@ -61,4 +57,25 @@ int main(void) {
 
 	// return success :)
 	return 0;
+
+
 }
+float enemyPhase[3] = { 0.0f, 0.0f, 0.0f };
+float enemyPhaseVelocity[3] = { glm::radians(90.0f),glm::radians(90.0f),glm::radians(90.0f) };
+
+void myUpdate(GLFWwindow* window, double tDelta) {
+
+	GameObjectCollection enemies = getObjectCollection("enemy");
+	for (int i = 0; i < enemies.objectCount; i++) {
+
+		enemies.objectArray[i]->position.y = sinf(enemyPhase[i]); // assume phase stored in radians so no conversion needed
+
+		enemyPhase[i] += enemyPhaseVelocity[i] * tDelta;
+
+}
+
+
+}
+	
+
+
