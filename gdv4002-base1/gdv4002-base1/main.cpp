@@ -74,6 +74,18 @@ void myUpdate(GLFWwindow* window, double tDelta) {
 		enemies.objectArray[i]->position.y = sinf(enemyPhase[i]); // assume phase stored in radians so no conversion needed
 
 		enemyPhase[i] += enemyPhaseVelocity[i] * tDelta;
+		static float playerSpeed = 1.0f; // distance per second
+
+		GameObject2D* player = getObject("player");
+
+		if (keys.test(Key::W) == true) {
+
+			player->position.y += playerSpeed * (float)tDelta;
+		}
+		if (keys.test(Key::S) == true) {
+
+			player->position.y -= playerSpeed * (float)tDelta;
+		}
 
 }
 
@@ -88,14 +100,18 @@ if (action == GLFW_PRESS) {
 	switch (key)
 	{
 	case GLFW_KEY_ESCAPE:
-			// If escape is pressed tell GLFW we want to close the window (and quit)
-			glfwSetWindowShouldClose(window, true);
-		break; 
+		// If escape is pressed tell GLFW we want to close the window (and quit)
+		glfwSetWindowShouldClose(window, true);
+		break;
 
 	case GLFW_KEY_W:
 		keys[Key::W] = true;
 		break;
-		}
+
+	case GLFW_KEY_S:
+		keys[Key::S] = true;
+		break;
+	}
 }
 // If not pressed, check the key has just been released
 else if (action == GLFW_RELEASE) {
@@ -106,6 +122,11 @@ else if (action == GLFW_RELEASE) {
 	case GLFW_KEY_W:
 		keys[Key::W] = false;
 		break;
+
+	case GLFW_KEY_S:
+		keys[Key::S] = false;
+		break;
+
 		}
 	}
 }
