@@ -42,7 +42,9 @@ int main(void) {
 
 	addObject("enemy", glm::vec2(2.0f, 0.0f), 0.0f, glm::vec2(0.75f, 0.75f), "Resources\\Textures\\alien01.png");
 
-	
+	listGameObjectKeys();
+	listObjectCounts();
+
 	//
 	// Set callback functions
 	//
