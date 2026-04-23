@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Keys.h"
 #include <bitset>
+#include "Player.h"
 
 
 // Function prototypes
@@ -21,6 +22,7 @@ int main(void) {
 		printf("Cannot setup game window!!!\n");
 		return initResult; // exit if setup failed
 	}
+
 	
 	//
 	// Setup game scene objects here
@@ -86,6 +88,14 @@ void myUpdate(GLFWwindow* window, double tDelta) {
 
 			player->position.y -= playerSpeed * (float)tDelta;
 		}
+		if (keys.test(Key::A) == true) {
+
+			player->position.x -= playerSpeed * (float)tDelta;
+		}
+		if (keys.test(Key::D) == true) {
+
+			player->position.x += playerSpeed * (float)tDelta;
+		}
 
 }
 
@@ -111,6 +121,12 @@ if (action == GLFW_PRESS) {
 	case GLFW_KEY_S:
 		keys[Key::S] = true;
 		break;
+	case GLFW_KEY_A:
+		keys[Key::A] = true;
+		break;
+	case GLFW_KEY_D:
+		keys[Key::D] = true;
+		break;
 	}
 }
 // If not pressed, check the key has just been released
@@ -127,6 +143,13 @@ else if (action == GLFW_RELEASE) {
 		keys[Key::S] = false;
 		break;
 
+	case GLFW_KEY_A:
+		keys[Key::A] = false;
+		break;
+
+	case GLFW_KEY_D:
+		keys[Key::D] = false;
+		break;
 		}
 	}
 }
